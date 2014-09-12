@@ -1,0 +1,35 @@
+i.icon-arrows-cw.clickable.pull-right.refresh
+each cluster in clusters
+    .g-cluster-container.clickable.col-xs-12.col-sm-6.col-md-4.col-lg-3.padding(g-cluster-id="#{cluster.task}")
+        .g-cluster-block
+            .g-cluster-title #{cluster.name}
+              .g-cluster-action.pull-right
+                i.icon-cancel.clickable.g-cluster-delete
+
+            ul.g-cluster-content
+                li
+                    b Zone
+                    | : #{cluster.zone}
+                li
+                    b Group
+                    | : #{cluster.group}
+                li
+                    b Status
+                    | : #{cluster.status}
+                li
+                    b Type
+                    | : #{cluster.type}
+                li
+                    b Size
+                    | : #{cluster.size}
+                li
+                    b Subnet
+                    | : #{cluster.subnet}
+                li
+                    b Up Time
+                    | : #{cluster.uptime}
+                li
+                    b Connection
+                    ul
+                        li #{cluster.dns}
+                        li #{cluster.ip}

@@ -1,0 +1,61 @@
+$minHeight = 500px
+
+#g-app-body-container
+  padding 10px
+  min-height $minHeight
+
+#g-alerts-container
+  position fixed
+  top 65px
+  right 10px
+  width 320px
+
+  .alert
+    display none
+    padding-top 10px
+    padding-bottom 10px
+    border-color #aaa
+    border-radius 0
+    box-shadow 0 0 0 5px rgba(180, 180, 180, 0.33)
+
+.g-validation-failed-message
+  font-weight bold
+  color #dd2222
+
+.g-bottom-message
+  margin-top 15px
+  font-size 12px
+  color #878080
+
+.g-password-reset-explanation
+  font-size 13px
+  color #505050
+  margin-bottom 10px
+
+.g-welcome-bg
+  z-index -1
+  position absolute
+  top 0
+  left 0
+  bottom 0
+  width 100%
+  overflow hidden
+  background #000
+  background-image url(http://cdn.slashgear.com/wp-content/uploads/2012/10/google-datacenter-tech-06.jpg)
+  background-size 100% auto
+  background-repeat no-repeat
+
+.g-welcome-login
+  margin auto
+  padding 20px
+  background #3f3b3b
+  color #fff
+  border-radius 10px
+
+.center-screen
+  position fixed
+  top 25%
+  width 100%
+
+  @media (max-width: 1024px)
+    top 20px

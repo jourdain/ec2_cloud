@@ -1,0 +1,32 @@
+if !currentUser
+  .g-welcome-bg
+  .center-screen
+    .container
+        .row
+            .col-xs-12.col-sm-12.col-md-8.col-lg-6.padding.col-md-offset-2.col-lg-offset-3
+                p
+                    form.g-welcome-login#g-login-form(role="form")
+                        .form-group
+                          label.control-label(for="g-login") Login or email
+                          input.input-sm#g-login.form-control(type="text", placeholder="Enter login")
+                        .form-group
+                          label.control-label(for="g-password") Password
+                          input.input-sm#g-password.form-control(type="password", placeholder="Enter password")
+                        .g-validation-failed-message
+                        .g-bottom-message
+                          | Don't have an account yet?
+                          a.g-register-link  Register here.
+                          |  |
+                          a.g-forgot-password  Forgot your password?
+
+                          button#g-login-button.btn.btn-xs.btn-primary(type="submit").pull-right
+                            i.icon-login
+                            |  Login
+else
+    #g-app-header-container
+        .g-header-wrapper
+
+    .g-clear-both
+        #g-app-body-container
+        #g-dialog-container.modal.fade
+        #g-alerts-container

@@ -1,0 +1,25 @@
+.container-fluid
+    .row
+        .col-xs-12.col-sm-12.col-md-12.col-lg-12.padding
+            form.form-inline(role="form")
+                .form-group
+                    .input-group.g-project-toolbar
+
+    p
+
+    .row
+        each project in projects
+            .go-to-project.clickable.col-xs-12.col-sm-6.col-md-4.col-lg-3.padding.g-project-entry(g-project-id="#{project.get('_id')}")
+                .g-project-block
+                    .g-project-title #{project.get('name')}
+                    .g-project-delete.clickable
+                      i.icon-cancel
+                    .g-project-content #{project.get('description')}
+                    .g-project-foot.text-right
+                      span.icon-credit-card
+                      | 0.05
+                      span.icon-folder
+                      | #{girder.formatSize(1000)}
+                      span.icon-clock
+                      | #{girder.formatDate(project.get('created'), girder.DATE_DAY)}
+

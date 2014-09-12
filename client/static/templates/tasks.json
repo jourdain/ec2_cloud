@@ -1,0 +1,28 @@
+[
+    {
+        "id": "pvw-4.2",
+        "label": "ParaViewWeb 4.2",
+        "endpoint": "${host}:8080",
+        "options" : [
+            { "label": "Access directory", "name": "data-dir", "type": "path" },
+            { "label": "Parallel job size", "name": "nb-processes", "type": "int" }
+        ]
+    },
+    {
+        "id": "mpas",
+        "label": "Ocean simulation",
+        "endpoint": "",
+        "options": [
+            { "label": "Input for simulation", "name": "input-deck", "type": "txt" }
+        ]
+    },
+    {
+        "id": "hydra-open",
+        "label": "Hydra Simulation",
+        "endpoint": "",
+        "options": [
+            { "label": "Input for simulation", "name": "input-deck", "type": "txt" }
+        ]
+    }
+
+]

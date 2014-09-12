@@ -1,0 +1,78 @@
+if taskToEdit
+  .g-task-edit
+    .container-fluid
+      .row
+        form.form-horizontal.col-xs-12.col-sm-10.col-md-10.col-lg-10.col-sm-offset-1.col-md-offset-1.col-lg-offset-1(role="form")
+          .form-group.g-task-title
+            label Name
+            input.task-field.form-control(type="text",value="#{taskToEdit.get('name')}",g-task-field="name", placeholder="Enter task name")
+
+          .form-group.g-task-description
+            label Description
+            textarea.task-field.form-control(g-task-field="description") #{taskToEdit.get('description')}
+
+          .form-group.g-task-definition
+            label Computer Type
+            .g-cluster-node-type-widget
+
+          .form-group
+            label Number of nodes
+            input.task-field.form-control.g-task-cluster-size(g-task-field="size",type="number",min="1",max="100",value="#{taskToEdit.get('size','1')}")
+
+          .form-group
+            label Job type
+            .g-task-type-widget
+
+          .form-group.g-task-options-widget
+
+          .form-group.h2.text-center
+            i.icon-cancel.cancel-new-task.clickable.pull-left
+            i.icon-trash.delete-task.clickable
+            i.icon-ok.save-new-task.clickable.pull-right
+else
+  .container-fluid
+    .row.g-task-toolbar
+        .col-xs-12.col-sm-12.col-md-12.col-lg-12.padding
+            form.form-inline(role="form")
+                .form-group
+                    .input-group
+                        .input-group-addon
+                            i.icon-search
+                        input.g-filter-field.form-control.input-sm(type="text", placeholder="#{placeholder}")
+                        .input-group-addon.clickable.refresh-tasks
+                            i.icon-asterisk(data-toggle="tooltip",data-placement="left",title="Filter by running tasks")
+    p
+
+    .row.g-task-list
+        .g-task-container.clickable.col-xs-12.col-sm-6.col-md-4.col-lg-3.padding.add-new-task
+            .g-task-block
+                .g-task-title &nbsp
+                .g-task-content.text-center
+                    h1.icon-plus
+                    | Add new task
+                .g-task-foot &nbsp
+
+        each task in tasks
+            .g-task-container.clickable.col-xs-12.col-sm-6.col-md-4.col-lg-3.padding.g-task-selectable(g-task-id="#{task.get('_id')}")
+                .g-task-block
+                    .g-task-title #{task.get('name')}
+                      .g-task-action.pull-right
+                        if task.get('status') == 1
+                          i.icon-play.g-task-start
+                        if task.get('status') == 3
+                          i.icon-arrows-cw
+                        if task.get('url')
+                          a.icon-logout.g-task-connect(href="#{task.get('url')}",target="_blank")
+                    .g-task-content #{task.get('description')}
+                    .g-task-foot.text-right
+                      span.icon-credit-card
+                      | #{task.get('task')}
+                      span.icon-folder
+                      | #{task.get('node')}
+                      span.icon-folder
+                      | #{task.get('size')}
+                      span.icon-clock
+                      | #{girder.formatDate(task.get('created'), girder.DATE_DAY)}
+
+
+

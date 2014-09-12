@@ -1,0 +1,84 @@
+{
+    "tasks": {
+        "pvw-4.2": "/opt/paraview/run.sh",
+        "mpas": "/opt/mpas/run.sh",
+        "hydra-open": "/opt/hydra/run.sh"
+    },
+    "nodes": {
+        "m3.medium": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 1
+        },
+        "m3.large": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 1
+        },
+        "m3.xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 4
+        },
+        "m3.2xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 8
+        },
+        "c3.large": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 2
+        },
+        "c3.xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 4
+        },
+        "c3.2xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 8
+        },
+        "c3.4xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 16
+        },
+        "c3.8xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 32
+        },
+        "r3.large": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 2
+        },
+        "r3.xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 4
+        },
+        "r3.2xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 8
+        },
+        "r3.4xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 16
+        },
+        "r3.8xlarge": {
+            "plugins": [],
+            "scripts": "",
+            "cpu": 32
+        },
+        "g2.2xlarge": {
+            "plugins": [],
+            "scripts" : "",
+            "cpu": 8
+        }
+    }
+}

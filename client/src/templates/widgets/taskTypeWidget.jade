@@ -1,0 +1,5 @@
+select.form-control.task-field(g-task-field="task")
+    each task in tasks
+        - var sel=null; if (task.id == active) sel='selected';
+        option(value="#{task.id}", selected=sel) #{task.label}
+input.task-field(g-task-field="web",type="hidden",name="web",value="0")

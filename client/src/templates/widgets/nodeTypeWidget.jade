@@ -1,0 +1,7 @@
+select.form-control.task-field(g-task-field="node")
+    each computer in computers
+        - var sel=null; if (computer.id === active) sel='selected';
+        option(value="#{computer.id}", selected=sel) #{computer.label}
+
+each computer in computers
+    .help.hidden(help-id="#{computer.id}") #{computer.cpu} CPU with #{computer.memory}GB of RAM and cost $#{computer.cost}/h.

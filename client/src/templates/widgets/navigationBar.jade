@@ -1,0 +1,9 @@
+.g-app-title #{title}
+if id
+    .g-app-title-actions
+        span.icon-home.clickable(href="project/#{id}")
+        span.icon-share.clickable(href="project/#{id}/tasks")
+        span.icon-layers.clickable(href="project/#{id}/clusters")
+        span.icon-folder.clickable(href="project/#{id}/storages")
+
+.g-current-user-wrapper.navbar-right

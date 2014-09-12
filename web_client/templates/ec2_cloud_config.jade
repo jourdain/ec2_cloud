@@ -1,0 +1,171 @@
+.g-config-breadcrumb-container
+
+.g-ec2_cloud-provider-list-title Cloud providers
+
+.panel-group#g-ec2_cloud-provider-accordion
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        a(data-toggle="collapse", data-parent="#g-ec2_cloud-provider-accordion",
+          href="#g-ec2_cloud-provider-starcluster")
+          i.icon-upload-cloud
+          |  EC2
+    #g-ec2_cloud-provider-starcluster.panel-collapse.collapse.in
+      .panel-body
+        form#g-ec2_cloud-provider-starcluster-form(role="form")
+          .form-group
+            label.control-label(for="g-ec2_cloud-provider-starcluster-template-file") Starcluster template file
+            input.input-sm.form-control#g-ec2_cloud-provider-starcluster-template-file(
+              type="text", placeholder="Path to the template Starcluster configuration file")
+          .form-group
+            label.control-label(for="g-ec2_cloud-provider-startcluster-work-dir") Working directory
+            input.input-sm.form-control#g-ec2_cloud-provider-startcluster-work-dir(
+              type="text", placeholder="Server directory path for temporary file management")
+          p#g-ec2_cloud-provider-starcluster-error-message.g-validation-failed-message
+          p
+            input.btn.btn-sm.btn-primary(type="submit", value="Save")
+            &nbsp
+            &nbsp
+            button.btn.btn-sm.btn-info(type="button", data-toggle="collapse", data-parent="#g-ec2_cloud-starcluster-help-accordion", href="#g-ec2_cloud-starcluster-help",)
+              i.icon-info
+              | Help
+        #g-ec2_cloud-starcluster-help-accordion
+          .bs-callout.bs-callout-info#g-ec2_cloud-starcluster-help.collapse
+            | This plugin rely on
+
+            a(href="http://star.mit.edu/cluster/") &nbsp Starcluster &nbsp
+
+            | to manage EC2 instances, you need to install Starcluster inside the Python environment where
+            | Girder is running. To install Starcluster just run the following command line.
+
+            p
+              pre.pre-scrollable.
+                $ pip install StarCluster
+
+            | To allow the plugin to properly work, you will also need to create a Starcluster configuration file
+            | that will be used as a starting point for Cloud Task execution. Additional informations can be find
+
+            a(href="http://star.mit.edu/cluster/docs/latest/manual/configuration.html#creating-the-configuration-fi") &nbsp here
+
+            | .
+            | The following configuration template is given as example:
+
+            p
+              pre.pre-scrollable.
+                ####################################
+                ## StarCluster Configuration File ##
+                ####################################
+                [global]
+                DEFAULT_TEMPLATE=
+
+                #############################################
+                ## AWS Credentials and Connection Settings ##
+                ## Information available in the sub-menus  ##
+                ## below your name                         ##
+                #############################################
+                [aws info]
+                AWS_ACCESS_KEY_ID = ...
+                AWS_SECRET_ACCESS_KEY = ...
+                AWS_USER_ID = FIXME_AWS_LOGIN
+                AWS_REGION_NAME = us-west-2
+                AWS_REGION_HOST = ec2.us-west-2.amazonaws.com
+
+                ###########################
+                ## Defining EC2 Keypairs ##
+                ###########################
+                [key ec2-starcluster]
+                KEY_LOCATION=/full_path_to_ec2_key/ec2-starcluster-key.rsa
+
+                #############################
+                ## Configuring EBS Volumes ##
+                #############################
+                [volume apps]
+                VOLUME_ID  = vol-xyz...
+                MOUNT_PATH = /apps
+
+                ############################################
+                ## Configuring Security Group Permissions ##
+                ############################################
+                # Sections starting with "permission" define security group rules to
+                # automatically apply to newly created clusters. IP_PROTOCOL in the following
+                # examples can be can be: tcp, udp, or icmp. CIDR_IP defaults to 0.0.0.0/0 or
+                # "open to the # world"
+
+                # open port 80 on the cluster to the world
+                [permission http]
+                IP_PROTOCOL = tcp
+                FROM_PORT = 80
+                TO_PORT = 80
+
+                # open https on the cluster to the world
+                [permission https]
+                IP_PROTOCOL = tcp
+                FROM_PORT = 443
+                TO_PORT = 443
+
+                # open 11111 on the cluster to the world
+                [permission pvserver]
+                IP_PROTOCOL = tcp
+                FROM_PORT = 11111
+                TO_PORT = 11111
+
+                # restrict ssh access to a single ip address (<your_ip>)
+                [permission ssh]
+                IP_PROTOCOL = tcp
+                FROM_PORT = 22
+                TO_PORT = 22
+                # CIDR_IP = <your_ip>/32
+
+                ################################
+                ## Defining Cluster Templates ##
+                ################################
+
+                [cluster single_cluster]
+                KEYNAME              = ec2-starcluster
+                CLUSTER_SIZE         = 2
+                CLUSTER_USER         = ubuntu
+                NODE_IMAGE_ID        = ami-80bedfb0
+                NODE_INSTANCE_TYPE   = m3.medium
+                MASTER_INSTANCE_TYPE = m3.medium
+                PUBLIC_IPS           = False
+                DISABLE_QUEUE        = False
+                AVAILABILITY_ZONE    = us-west-2a
+                VOLUMES              = apps
+                PERMISSIONS          = ssh, http, paraview
+                #USERDATA_SCRIPTS    = /path/to/script1, /path/to/script2
+
+                [cluster tiny_cluster]
+                KEYNAME              = ec2-starcluster
+                CLUSTER_SIZE         = 2
+                CLUSTER_USER         = ubuntu
+                NODE_IMAGE_ID        = ami-80bedfb0
+                NODE_INSTANCE_TYPE   = m3.medium
+                MASTER_INSTANCE_TYPE = m3.medium
+                PUBLIC_IPS           = False
+                DISABLE_QUEUE        = False
+                AVAILABILITY_ZONE    = us-west-2a
+                VOLUMES              = apps
+                PERMISSIONS          = ssh, http, paraview
+                #USERDATA_SCRIPTS    = /path/to/script1, /path/to/script2
+
+                [cluster sc_ubuntu_13_X2]
+                KEYNAME              = ec2-starcluster
+                CLUSTER_SIZE         = 2
+                CLUSTER_USER         = ubuntu
+                NODE_IMAGE_ID        = ami-80bedfb0
+                NODE_INSTANCE_TYPE   = m3.medium
+                MASTER_INSTANCE_TYPE = m3.medium
+                PUBLIC_IPS           = False
+                DISABLE_QUEUE        = False
+                AVAILABILITY_ZONE    = us-west-2a
+                VOLUMES              = apps
+                PERMISSIONS          = ssh, http, paraview
+                #USERDATA_SCRIPTS    = /path/to/script1, /path/to/script2
+
+            | That file will be used as a starting point when generating custom configuration for each Cloud Task.
+            | The plugin will then write text files in the
+            b &nbsp working directory &nbsp
+            | specified in the above setting.
+            | Moreover, the plugin will need the
+            b &nbsp path to that template file. &nbsp
+            | Those are the two configuration items that are required here.

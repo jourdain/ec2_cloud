@@ -1,0 +1,9 @@
+{
+    "name": "EC2 Cloud Management",
+    "description": "Provides functions for creating cluster in the EC2 cloud and run tasks on those clusters.",
+    "grunt": {
+        "file" : "Gruntfile.js",
+        "defaultTargets": [ "ec2_cloud" ],
+        "pluginTargets": {}
+    }
+}
